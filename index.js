@@ -44,6 +44,25 @@ app.post('/',urlencodedParser,(req,res) =>{
         res.redirect('/');
     }
 });
+
+    let myString = 'Bob'
+let visited = 0;
+
+app.get('/', (req, res) => {
+    res.cookie('visited', visited, {maxAge: 99999999999});
+    res.cookie('stuff', myString, {maxAge: 99999999999});
+    
+    if(req.cookies.beenToSiteBefore == 'yes')
+    {
+        res.send(`you have been here ${req.cookies.visited} times before`);
+        visited++;
+    }
+    else
+    {
+        res.cookie('beenToSiteBefore', 'yes', {maxAge:99999999999999});
+        res.send('This is your first time here!');
+    }
+});
 app.get('/private', checkAuth, (req,res) =>{
    //res.send(Authorized access: `Welcome${req.session.user.username}!`);
 });
