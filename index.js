@@ -14,6 +14,25 @@ let urlencodedparser = express.urlencoded(
     }
     );
 
+    let myString = 'Bob'
+let visited = 0;
+
+app.get('/', (req, res) => {
+    visited++;
+    res.cookie('visited', visited, {maxAge: 99999999999});
+    res.cookie('stuff', myString, {maxAge: 99999999999});
+    
+    if(req.cookies.beenToSiteBefore == 'yes')
+    {
+        res.send(`you have been here ${req.cookies.visited} times before`);
+    }
+    else
+    {
+        res.cookie('beenToSiteBefore', 'yes', {maxAge:9999999999999999});
+        res.send('This is your first time here!');
+    }
+});
+
 app.get('/', routes.index);
 
 app.listen(3000);
