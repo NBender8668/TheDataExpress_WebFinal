@@ -1,40 +1,55 @@
 const express = require('express');
 const pug = require('pug');
-const cookieParser  = require('cookie-parser');
 const routes = require('./routes/routes');
 const path = require('path');
+const { access } = require('fs');
 
 const app = express();
-
-app.use(cookieParser());
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
-let urlencodedparser = express.urlencoded(
-    {
+app.use(expressSession ({
+    secret:'wh4t3v3r',
+    saveUnintialized: true,
+    resave: true
+}));
+
+let urlencodedparser = express.urlencoded({
+
         extended: false
-    }
-    );
+});
 
-    let myString = 'Bob'
-let visited = 0;
-
-app.get('/', (req, res) => {
-    visited++;
-    res.cookie('visited', visited, {maxAge: 99999999999});
-    res.cookie('stuff', myString, {maxAge: 99999999999});
-    
-    if(req.cookies.beenToSiteBefore == 'yes')
-    {
-        res.send(`you have been here ${req.cookies.visited} times before`);
+const checkAuth = (req,res,next) =>{
+    if(req.session.user && req.session.user.isAuthenticated){
+        next();
+    }else{
+        res.redirect('/');
     }
-    else
-    {
-        res.cookie('beenToSiteBefore', 'yes', {maxAge:9999999999999999});
-        res.send('This is your first time here!');
+}
+
+app.get('/', (req,res) =>{
+    res.urlencodedparser('login');
+});
+app.get('/', routes.index);
+app.post('/',urlencodedParser,(req,res) =>{
+    console.log(req.body.username);
+    if(req.body.username == 'user' && req.body.password == 'pass'){
+        req.session.user={
+            isAuthenticated: true,
+            username: req.body.username
+        }
+        res.redirect('/private');
+    }else{
+        res.redirect('/');
     }
 });
+app.get('/private', checkAuth, (req,res) =>{
+   //res.send(Authorized access: `Welcome${req.session.user.username}!`);
+});
+app.get('/public',(req,res)=>{
+    res.send('This is a public page');
+})
 
 
 
