@@ -1,9 +1,12 @@
 const express = require('express');
 const pug = require('pug');
+const cookieParser  = require('cookie-parser');
 const routes = require('./routes/routes');
 const path = require('path');
 
 const app = express();
+
+app.use(cookieParser());
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -33,6 +36,6 @@ app.get('/', (req, res) => {
     }
 });
 
-app.get('/', routes.index);
+
 
 app.listen(3000);
