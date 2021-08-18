@@ -2,6 +2,8 @@ const express = require('express');
 const pug = require('pug');
 const cookieParser  = require('cookie-parser');
 const routes = require('./routes/routes');
+const bcrypt = require('bcryptjs');
+
 const path = require('path');
 
 const app = express();
@@ -14,8 +16,7 @@ app.set('views', path.join(__dirname, 'views'));
 let urlencodedparser = express.urlencoded(
     {
         extended: false
-    }
-    );
+    });
 
     let myString = 'Bob'
 let visited = 0;
