@@ -1,5 +1,7 @@
 const express = require('express');
 const pug = require('pug');
+const expressSession = require('express-session');
+const { response } = require('express');
 const routes = require('./routes/routes');
 //const bcrypt = require('bcryptjs');
 
@@ -11,13 +13,13 @@ const app = express();
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
-app.use(expressSession ({
-    secret:'wh4t3v3r',
-    saveUnintialized: true,
+app.use(expressSession({
+    secret: 'wh4t3v3r',
+    saveUninitialized: true,
     resave: true
 }));
 
-let urlencodedparser = express.urlencoded({
+let urlencodedParser = express.urlencoded({
 
         extended: false
 });
@@ -31,7 +33,7 @@ const checkAuth = (req,res,next) =>{
 }
 
 app.get('/', (req,res) =>{
-    res.urlencodedparser('login');
+    res.urlencodedParser('login');
 });
 
 app.get('/', routes.index);
@@ -75,6 +77,17 @@ app.get('/public',(req,res)=>{
     res.send('This is a public page');
 })
 
-
+app.get('/logout', (req,res) =>{
+    req.session.destroy(err => {
+        if(err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            res.redirect('/');
+        }
+    });
+});
 
 app.listen(3000);
