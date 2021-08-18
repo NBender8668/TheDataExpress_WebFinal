@@ -15,13 +15,7 @@ let mdb = mongoose.connection;
 mdb.on('error', console.error.bind(console, 'connection error'));
 mdb.once('open', callback => {});
 
-exports.index = (req, res) =>
-{
-    if(err) return console.error(err);
-    res.render('index', {
-        
-    });
-};
+
 
 // Joke.find(req.query.category ? {Category: req.query.category} : {}, (err, joke) => 
 // {

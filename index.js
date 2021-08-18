@@ -19,10 +19,7 @@ app.use(expressSession({
     resave: true
 }));
 
-let urlencodedParser = express.urlencoded({
-
-        extended: false
-});
+const urlencodedParser = express.urlencoded({extended: false});
 
 const checkAuth = (req,res,next) =>{
     if(req.session.user && req.session.user.isAuthenticated){
@@ -32,12 +29,12 @@ const checkAuth = (req,res,next) =>{
     }
 }
 
-app.get('/', (req,res) =>{
-    res.urlencodedParser('login');
+app.get('/', (req, res) =>{
+    res.render('login');
 });
 
-app.get('/', routes.index);
-app.post('/',urlencodedParser,(req,res) =>{
+//app.get('/', routes.index);
+app.post('/', urlencodedParser, (req,res) =>{
     console.log(req.body.username);
     if(req.body.username == 'user' && req.body.password == 'pass'){
         req.session.user={
@@ -47,25 +44,6 @@ app.post('/',urlencodedParser,(req,res) =>{
         res.redirect('/private');
     }else{
         res.redirect('/');
-    }
-});
-
-
-let visited = 0;
-
-app.get('/', (req, res) => {
-    res.cookie('visited', visited, {maxAge: 99999999999});
-    res.cookie('stuff', req.session.user.username, {maxAge: 99999999999});
-    
-    if(req.cookies.beenToSiteBefore == 'yes')
-    {
-        res.send(`you have been here ${req.cookies.visited} times before`);
-        visited++;
-    }
-    else
-    {
-        res.cookie('beenToSiteBefore', 'yes', {maxAge:99999999999999});
-        res.send('This is your first time here!');
     }
 });
 
