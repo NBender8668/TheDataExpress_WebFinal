@@ -2,13 +2,13 @@ extends layout
 
 block content 
     form(id='form' method='post' action='/create')
-        p Username 
+        p Username (user):
             input(type='text' name='user')
         p Email 
             input(type='email' name='email')
         p Age
             input(type='number' name='bday' min='8' max='104')
-        p Password 
+        p Password (password):
             input(type='password' name='password')
         p Category 
             select(name='category')

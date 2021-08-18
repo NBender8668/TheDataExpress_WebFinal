@@ -1,7 +1,7 @@
 const express = require('express');
 const pug = require('pug');
 const routes = require('./routes/routes');
-const bcrypt = require('bcryptjs');
+//const bcrypt = require('bcryptjs');
 
 const path = require('path');
 
