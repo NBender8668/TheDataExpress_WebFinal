@@ -41,18 +41,18 @@ app.post('/', urlencodedParser, (req,res) =>{
             isAuthenticated: true,
             username: req.body.username
         }
-        res.redirect('/private');
+        res.redirect('/index');
     }else{
-        res.redirect('/');
+        res.redirect('/register');
     }
 });
 
-app.get('/private', checkAuth, (req,res) =>{
+app.get('/index', checkAuth, (req,res) =>{
     res.send(`Authorized Access: Welcome! ${req.session.user.username}`);
 })
 
-app.get('/public',(req,res)=>{
-    res.send('This is a public page');
+app.get('/register',(req,res)=>{
+    res.render('register');
 })
 
 app.get('/logout', (req,res) =>{
