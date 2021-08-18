@@ -3,8 +3,10 @@ const pug = require('pug');
 const expressSession = require('express-session');
 const { response } = require('express');
 const routes = require('./routes/routes');
+const bcrypt = require('bcryptjs');
+
 const path = require('path');
-const { access } = require('fs');
+
 
 const app = express();
 
@@ -33,6 +35,7 @@ const checkAuth = (req,res,next) =>{
 app.get('/', (req,res) =>{
     res.urlencodedParser('login');
 });
+
 app.get('/', routes.index);
 app.post('/',urlencodedParser,(req,res) =>{
     console.log(req.body.username);
@@ -47,12 +50,12 @@ app.post('/',urlencodedParser,(req,res) =>{
     }
 });
 
-    let myString = 'Bob'
+
 let visited = 0;
 
 app.get('/', (req, res) => {
     res.cookie('visited', visited, {maxAge: 99999999999});
-    res.cookie('stuff', myString, {maxAge: 99999999999});
+    res.cookie('stuff', req.session.user.username, {maxAge: 99999999999});
     
     if(req.cookies.beenToSiteBefore == 'yes')
     {
@@ -65,9 +68,11 @@ app.get('/', (req, res) => {
         res.send('This is your first time here!');
     }
 });
+
 app.get('/private', checkAuth, (req,res) =>{
-   //res.send(Authorized access: `Welcome${req.session.user.username}!`);
-});
+    res.send(`Authorized Access: Welcome! ${req.session.user.username}`);
+})
+
 app.get('/public',(req,res)=>{
     res.send('This is a public page');
 })
