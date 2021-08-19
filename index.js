@@ -3,6 +3,7 @@ const pug = require('pug');
 const expressSession = require('express-session');
 const { response } = require('express');
 const routes = require('./routes/routes');
+const config = require('./config');
 //const bcrypt = require('bcryptjs');
 
 const path = require('path');
@@ -30,7 +31,7 @@ const checkAuth = (req,res,next) =>{
 }
 
 app.get('/', (req, res) =>{
-    res.render('login');
+    res.render('login', {config});
 });
 
 //app.get('/', routes.index);
@@ -52,7 +53,7 @@ app.get('/index', checkAuth, (req,res) =>{
 })
 
 app.get('/register',(req,res)=>{
-    res.render('register');
+    res.render('register', {config});
 })
 
 app.get('/logout', (req,res) =>{

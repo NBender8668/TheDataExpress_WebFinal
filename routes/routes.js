@@ -20,17 +20,5 @@ mdb.once('open', callback => {});
 exports.index = (req, res) =>
 {
     if(err) return console.error(err);
-    res.render('index', {
-        config
-        
-    });
+    res.render('index', {config});
 };
-
-// Joke.find(req.query.category ? {Category: req.query.category} : {}, (err, joke) => 
-// {
-//     if(err) return console.error(err);
-//     console.log(joke);
-//     res.render('index',
-//     {
-//     });
-// }).limit(req.query.amount ? parseInt(req.query.amount) : 1000);
