@@ -1,8 +1,15 @@
 doctype 
 html 
     head
-        title=title 
-        link(rel='stylesheet' href='/style.css')
+        link(rel='stylesheet', href='/style.css')
     body 
-        h3=title
-        block content
+        header
+            nav 
+                ul 
+                each item in config.menu
+                    a(href=item[1] target=item[2])
+                        div(class='menu_item')
+                            li=item[0]
+        section
+            block content
+        footer

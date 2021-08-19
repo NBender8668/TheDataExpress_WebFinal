@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const fs = require('fs');
+const config = require('../config');
 
 mongoose.Promise = global.Promise;
 
@@ -19,6 +21,7 @@ exports.index = (req, res) =>
 {
     if(err) return console.error(err);
     res.render('index', {
+        config
         
     });
 };

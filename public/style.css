@@ -1,0 +1,11 @@
+.menu_item{
+    display: inline-block;
+    border:2px solid #fff;
+    width: 150px;
+    margin: 5px;
+    padding: 5px;
+    background-color: #152418;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+}
