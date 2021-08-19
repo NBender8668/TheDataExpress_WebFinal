@@ -17,8 +17,51 @@ let mdb = mongoose.connection;
 mdb.on('error', console.error.bind(console, 'connection error'));
 mdb.once('open', callback => {});
 
+let userSchema = mongoose.Schema(
+    {
+        username: String,
+        email: String,
+        age: String,
+        question1: String,
+        question2: String,
+        question3: String,
+        password: String
+    }
+);
+
+let User = mongoose.model('User_Collection', userSchema);
+
 exports.index = (req, res) =>
 {
-    if(err) return console.error(err);
     res.render('index', {config});
+};
+
+
+exports.create = (req, res) =>
+{
+    res.render('create', 
+    {
+        title: 'Register'
+    });
+};
+
+exports.createUser = (req, res) =>
+{
+    let user = new User(
+        {
+            username: req.body.username,
+            email: req.body.email,
+            age: req.body.age,
+            question1: req.body.question1,
+            question2: req.body.question2,
+            question3: req.body.question3,
+            password: req.body.password
+        }
+    );
+    user.save((err, user) => 
+    {
+        if(err) return console.error(err);
+        console.log(req.body.username + ' added');
+    });
+    res.redirect('/');
 };

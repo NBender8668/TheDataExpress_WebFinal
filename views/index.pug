@@ -1,5 +1,12 @@
-extends layout
+extends layout 
 
 block content
-    h2 The Product everyone needs 
-    
+    form(method ='post' action='/')
+        p Username (user):
+            br
+            input(type='text' name='username')
+        p Password (pass):
+            br
+            input(type='password' name='password')
+        p 
+            input(type='submit', value="Log In")
