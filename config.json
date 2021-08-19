@@ -1,7 +1,6 @@
 {
     "menu": [
         ["Home", "/", ""],
-        ["About Coco Jumbo", "/cocojumbo", ""],
-        ["Order", "/order", ""]
+        ["Index", "/index", ""]
     ]
 }

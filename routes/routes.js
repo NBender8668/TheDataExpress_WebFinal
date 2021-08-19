@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const fs = require('fs');
+const config = require('../config');
 
 mongoose.Promise = global.Promise;
 
@@ -18,16 +20,5 @@ mdb.once('open', callback => {});
 exports.index = (req, res) =>
 {
     if(err) return console.error(err);
-    res.render('index', {
-        
-    });
+    res.render('index', {config});
 };
-
-// Joke.find(req.query.category ? {Category: req.query.category} : {}, (err, joke) => 
-// {
-//     if(err) return console.error(err);
-//     console.log(joke);
-//     res.render('index',
-//     {
-//     });
-// }).limit(req.query.amount ? parseInt(req.query.amount) : 1000);
