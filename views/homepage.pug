@@ -10,19 +10,19 @@ block content
             th Degree
             th Holiday
             th Platform
-        each user in users
-            tr 
-                td=user.id
-                td=user.username
-                td=user.email
-                td=user.age
-                td=user.question1 
-                td=user.question2 
-                td=user.question3
-                td 
-                    a(href='/edit/' + user.id) Edit
-                td 
-                    a(href='/delete/' + user.id) Delete
+        //- each user in users
+        //-     tr 
+        //-         td=user.id
+        //-         td=user.username
+        //-         td=user.email
+        //-         td=user.age
+        //-         td=user.question1 
+        //-         td=user.question2 
+        //-         td=user.question3
+        //-         td 
+        //-             a(href='/edit/' + user.id) Edit
+        //-         td 
+        //-             a(href='/delete/' + user.id) Delete
     p 
         a(href='/create') Add new joke
 

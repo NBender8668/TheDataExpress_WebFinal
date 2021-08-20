@@ -30,6 +30,7 @@ app.post('/', urlencodedParser, routes.authenticateUser);
 app.get('/create', routes.create);
 app.post('/create',urlencodedParser, routes.createUser );
 app.post('/homepage', routes.homepage);
-app.post('/homepage', urlencodedParser, routes.homepage);
+app.get('/homepage', urlencodedParser, routes.homepage);
+app.get('/logout', routes.logout);
 
 app.listen(3000);
