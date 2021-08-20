@@ -33,7 +33,7 @@ let User = mongoose.model('User_Collection', userSchema);
 
 exports.index = (req, res) =>
 {
-    res.render('index', {config});
+    res.render('login', {config});
 };
 
 
@@ -41,7 +41,8 @@ exports.create = (req, res) =>
 {
     res.render('create', 
     {
-        title: 'Register'
+        config,
+        title: "Register"
     });
 };
 
@@ -63,5 +64,5 @@ exports.createUser = (req, res) =>
         if(err) return console.error(err);
         console.log(req.body.username + ' added');
     });
-    res.redirect('/');
+    res.redirect('/index');
 };

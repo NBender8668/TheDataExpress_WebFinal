@@ -27,5 +27,6 @@ const urlencodedParser = express.urlencoded({extended: false});
 app.get('/', routes.index);
 app.get('/create', routes.create);
 app.post('/create',urlencodedParser, routes.createUser );
+app.post('/', urlencodedParser, routes.index);
 
 app.listen(3000);
