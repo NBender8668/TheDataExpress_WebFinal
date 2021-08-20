@@ -12,6 +12,7 @@ const path = require('path');
 const app = express();
 
 app.set('view engine', 'pug');
+app.use(express.static(__dirname + '/public'));
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(expressSession({
@@ -25,9 +26,10 @@ const urlencodedParser = express.urlencoded({extended: false});
 
 
 app.get('/', routes.login);
-app.get('/index', routes.index);
+app.post('/', urlencodedParser, routes.authenticateUser);
 app.get('/create', routes.create);
 app.post('/create',urlencodedParser, routes.createUser );
-app.post('/', urlencodedParser, routes.login);
+app.post('/homepage', routes.homepage);
+app.post('/homepage', urlencodedParser, routes.homepage);
 
 app.listen(3000);

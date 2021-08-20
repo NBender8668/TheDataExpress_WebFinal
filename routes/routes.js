@@ -31,7 +31,7 @@ let userSchema = mongoose.Schema(
 
 let User = mongoose.model('User_Collection', userSchema);
 
-exports.index = (req, res) =>
+exports.login = (req, res) =>
 {
     res.render('index', {
         config,
@@ -76,3 +76,63 @@ exports.createUser = (req, res) =>
     });
     res.redirect('/index');
 };
+
+exports.homepage = (req, res) =>
+{
+    res.render('homepage', {config});
+};
+
+exports.checkAuth = (req,res) =>
+{
+    if(req.session.user && req.session.user.isAuthenticated)
+    {
+        next();
+    }
+    else{
+        res.redirect('/');
+    }
+}
+
+exports.login = (req, res) =>
+{
+    res.render('login', 
+    {
+        config,
+        title: "Login"
+    });
+}
+
+exports.authenticateUser = (req, res) => 
+{
+    console.log(req.body.username);
+    if(req.body.username == 'user' && req.body.password == 'pass')
+    {
+        req.session.user =
+        {
+            isAuthenticated: true,
+            username: req.body.username
+            
+        }
+        res.redirect('/homepage');
+    }
+    else{
+        res.redirect('/');
+    }
+}
+
+exports.logout = (req, res) =>
+{
+    req.session.destroy(err => {
+        if(err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            res.redirect('/');
+        }
+    });
+}
+
+
+
