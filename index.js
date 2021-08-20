@@ -12,6 +12,7 @@ const path = require('path');
 const app = express();
 
 app.set('view engine', 'pug');
+app.use(express.static(__dirname + '/public'));
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(expressSession({

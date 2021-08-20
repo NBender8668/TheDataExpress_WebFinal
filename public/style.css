@@ -9,3 +9,10 @@
     cursor: pointer;
     user-select: none;
 }
+
+body
+{
+    background-color: black;
+}
+
+
