@@ -1,0 +1,27 @@
+extends layout 
+
+block content 
+    form(id='form' method='post' action=`/edit`)
+        p Username 
+            input(type='text' name='username' value=user.username)
+        p Email 
+            input(type='text' name='email' value=user.email)
+        p Age 
+            input(type="text" name='age' value=user.age)
+        p Whats your Degree?:
+        select(name="question1")
+            option(value="GD") Game Development 
+            option(value="WD") Web Development
+            option(value="IS") Information Systems
+        p Favorite Holiday?:
+        select(name="question2")
+            option(value="Christmas") Christmas 
+            option(value="Halloween") Halloween
+            option(value="Thanksgiving") Thanksgiving
+        p Favorite Platform?:
+        select(name="question3")
+            option(value="PC") PC
+            option(value="Xbox") Xbox
+            option(value="Playstation") Playstation 
+        p 
+            input(type='submit' value='Update Profile')

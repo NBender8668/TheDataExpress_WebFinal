@@ -3,8 +3,8 @@ const pug = require('pug');
 const expressSession = require('express-session');
 const { response } = require('express');
 const routes = require('./routes/routes');
-const config = require('./config');
-//const bcrypt = require('bcryptjs');
+const { decodeBase64 } = require('bcryptjs');
+
 
 const path = require('path');
 
@@ -24,13 +24,23 @@ app.use(expressSession({
 const urlencodedParser = express.urlencoded({extended: false});
 
 
+app.post('/logout', (req,res) => {
+    req.session.destroy(err => {
+        if(err) {
+            console.log(err)
+        }
+        else {
+            res.redirect('/')
+        }
+    })
+})
 
-app.get('/', routes.login);
-app.post('/', urlencodedParser, routes.authenticateUser);
+app.get('/', routes.loginpage);
+app.post('/', urlencodedParser, routes.login);
 app.get('/create', routes.create);
 app.post('/create',urlencodedParser, routes.createUser );
-app.post('/homepage', routes.homepage);
-app.get('/homepage', urlencodedParser, routes.homepage);
-app.get('/logout', routes.logout);
-
+app.get('/homepage', routes.homepage);
+app.post('/homepage', urlencodedParser, routes.homepage);
+app.get('/edit',routes.edit);
+app.post('/edit',urlencodedParser,routes.editUser);
 app.listen(3000);

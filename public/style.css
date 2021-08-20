@@ -16,4 +16,11 @@ body
     background-color: rgb(46, 89, 231);
 }
 
+th, td
+{
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+}
+
 
