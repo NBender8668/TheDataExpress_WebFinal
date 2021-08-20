@@ -33,9 +33,19 @@ let User = mongoose.model('User_Collection', userSchema);
 
 exports.index = (req, res) =>
 {
-    res.render('login', {config});
+    res.render('index', {
+        config,
+        title: 'Home',
+        users : user
+    });
 };
-
+exports.login = (req, res) =>
+{
+    res.render('login', {
+        config,
+        title: 'Login'
+    });
+};
 
 exports.create = (req, res) =>
 {
