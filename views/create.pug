@@ -8,12 +8,21 @@ block content
             input(type='email' name='email')
         p Age:
             input(type='number' name='age' min='8' max='100')
-        p Favorite Movie?: 
-            input(type="text" name='question1')
-        p Favorite Holiday?: 
-            input(type="text" name='question2')
-        p Favorite Food?: 
-            input(type="text" name='question2')
+        p Whats your Degree?:
+            select(name="question1")  
+                option(value="degree") Game Development 
+                option(value="degree") Web Development
+                option(value="degree") Information Systems
+        p Favorite Holiday?:
+            select(name="question2")  
+                option(value="holiday") Chirstmas 
+                option(value="holiday") Halloween
+                option(value="holiday") Thanksgiving
+        p Perferred Platform?: 
+            select(name="question3")
+                option(value="platform") PC
+                option(value="platform") Xbox
+                option(value="platform") Playstation   
         p Password:
             input(type='password' name='password')
         p 
