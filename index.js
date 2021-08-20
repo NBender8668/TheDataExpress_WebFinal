@@ -26,10 +26,10 @@ const urlencodedParser = express.urlencoded({extended: false});
 
 
 app.get('/', routes.login);
-app.post('/', urlencodedParser, routes.login);
+app.post('/', urlencodedParser, routes.authenticateUser);
 app.get('/create', routes.create);
 app.post('/create',urlencodedParser, routes.createUser );
-app.post('/index',routes.homepage);
-app.post('/index', urlencodedParser, routes.homepage);
+app.post('/homepage', routes.homepage);
+app.post('/homepage', urlencodedParser, routes.homepage);
 
 app.listen(3000);
