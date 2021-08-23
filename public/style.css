@@ -1,19 +1,25 @@
 .menu_item{
     display: inline-block;
-    border:2px solid #fff;
+    border:5px solid rgb(0, 0, 0);
     list-style-type: none;
     width: 150px;
     margin: 5px;
     padding: 5px;
-    background-color: #2bdd4f;
+    background-color: #ffffff;
     border-radius: 8px;
     cursor: pointer;
     user-select: none;
+    color:black
 }
 
 body
 {
     background-color: rgb(46, 89, 231);
+    font-family: Andale Mono, monospace	;
+    background-image: url(https://c4.wallpaperflare.com/wallpaper/296/96/958/hollow-knight-quirrel-hollow-knight-hd-wallpaper-preview.jpg);
+    background-attachment:fixed; 
+    background-size:cover; 
+    background-position:fit;
 }
 
 th, td
@@ -23,4 +29,28 @@ th, td
     border-style: solid;
 }
 
+.login_div
+{
+    margin: auto;
+    width: 50%;
+    border: 3px solid white;
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(0, 1, 7, 0.514);
+    color:white;
+}
 
+nav
+{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+}
+
+.bug_title
+{
+    font-size: 52px;
+    font-family: DejaVu Sans Mono, monospace;
+    color: rgb(107, 196, 196);
+}

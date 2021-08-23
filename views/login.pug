@@ -1,15 +1,22 @@
 extends layout 
 
 block content
-    form(method ='post' action='/')
-        p Username (user):
-            br
-            input(type='text' name='username')
-        p Password (pass):
+    head
+
+        form(class="login_div" method ='post' action='/')
+    
+            p(class="bug_title") Reject Modernity
+            p(class="bug_title") Become Funky Bug
+
+            img(src='https://media.discordapp.net/attachments/626974216826126337/784116961817788426/funky.png', alt='login', style='width:200px;height:200px;')
+            p Username (user):
+                br
+                input(type='text' name='username')
+            p Password (pass):
             br
             input(type='password' name='password')
-        p=fail
-        p 
+            p=fail
+            p 
             input(type='submit', value="Log In")
-        p
+            p
             a(href='/create') Register

@@ -1,10 +1,12 @@
 extends layout
 
 block content 
-    h1 Welcome
-    p=time
-    p
-        a(href='/edit') Edit your profile here
-    form(method='POST' action='/logout')
-        p 
-            input(type="submit" value='logout')
+    div(class="login_div")
+        h1(class="bug_title") Welcome to Funky Bug Central
+        img(src='https://media.discordapp.net/attachments/626974216826126337/784116961817788426/funky.png')
+        p=time
+        p
+            a(href='/edit') Edit your profile here
+        form(method='POST' action='/logout')
+            p 
+                input(type="submit" value='logout')
