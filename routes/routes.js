@@ -171,6 +171,20 @@ exports.logout = (req, res) =>
     })
 }
 
+exports.api = (req, res) =>
+{
+    console.log(req.query.id);
+    if(req.query.id == undefined)
+    {
+        res.json(User);
+
+    }
+    else
+    {
+        res.json(User[req.query.question1]);
+    }
+}
+
 
 
 
