@@ -3,6 +3,7 @@ const fs = require('fs');
 const config = require('../config');
 const bcrypt = require('bcryptjs');
 const exp = require('constants');
+const { json } = require('express');
 
 mongoose.Promise = global.Promise;
 
@@ -171,19 +172,44 @@ exports.logout = (req, res) =>
     })
 }
 
-exports.api = (req, res) =>
+exports.questionData = (req, res) =>
 {
-    console.log(req.query.id);
-    if(req.query.id == undefined)
-    {
-        res.json(User);
-
-    }
-    else
-    {
-        res.json(User[req.query.question1]);
-    }
+let qData1 = 
+{
+    GD: 0,
+    WD: 0,
+    IS: 0
 }
+let qData2 =
+{
+    Christmas: 0,
+    Halloween: 0,
+    Thanksgiving: 0
+}
+let qData3 =
+{
+    PC: 0,
+    Xbox: 0,
+    Playstation: 0
+}
+
+User.find((err, users) => 
+{
+    users.forEach(user => {
+        qData1[user.question1]++;
+        qData2[user.question2]++;
+        qData3[user.question3]++;
+    })
+    let allData = 
+    {
+        "q1": qData1,
+        "q2": qData2,
+        "q3": qData3
+    };
+    res.json(allData);
+})
+}
+
 
 
 

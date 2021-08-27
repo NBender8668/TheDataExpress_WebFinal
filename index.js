@@ -43,7 +43,7 @@ app.post('/logout', (req,res) => {
 
 app.get('/', routes.loginpage);
 app.post('/', urlencodedParser, routes.login);
-app.get('/api', routes.api);
+app.get('/api', routes.questionData);
 app.get('/create', routes.create);
 app.post('/create',urlencodedParser, routes.createUser );
 app.get('/homepage', routes.homepage);
