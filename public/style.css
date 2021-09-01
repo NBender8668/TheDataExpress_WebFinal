@@ -54,3 +54,7 @@ nav
     font-family: DejaVu Sans Mono, monospace;
     color: rgb(107, 196, 196);
 }
+
+canvas{
+    background-color: black;
+}

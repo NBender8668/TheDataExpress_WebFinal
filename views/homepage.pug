@@ -5,8 +5,18 @@ block content
         h1(class="bug_title") Welcome to Funky Bug Central
         img(src='https://media.discordapp.net/attachments/626974216826126337/784116961817788426/funky.png')
         p=time
+        p What's your Degree?
+        canvas(id='question1')
+        br
+        p Favorite Holiday?
+        canvas(id='question2')
+        br
+        p Favorite Gaming Platform?
+        canvas(id='question3')
         p
             a(href='/edit') Edit your profile here
         form(method='POST' action='/logout')
             p 
                 input(type="submit" value='logout')
+
+    script(src='./script.js') 
